@@ -11,19 +11,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using FlightSimulator.ViewModels;
 
 namespace FlightSimulator.Views
 {
     /// <summary>
-    /// Interaction logic for MyFlightBoard.xaml
+    /// Interaction logic for PopUpSetting.xaml
     /// </summary>
-    public partial class MyFlightBoard : UserControl
+    public partial class PopUpSetting : Window
     {
-        public MyFlightBoard()
+        public PopUpSetting()
         {
             InitializeComponent();
-            this.DataContext = new SettingsVM();
         }
     }
 }

@@ -6,11 +6,22 @@
         xmlns:local="clr-namespace:FlightSimulator"
         xmlns:Controls="clr-namespace:FlightSimulator.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="MainWindow" Height="550" Width="100">
     <Grid>
-        <!--<Controls:MyFlightBoard></Controls:MyFlightBoard>-->
-        <!--<Controls:MyJoystick></Controls:MyJoystick>-->
-        <Controls:MyAutoPilot></Controls:MyAutoPilot>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Viewbox Grid.Column="1">
+            <TabControl Height="550">
+                <TabItem Header="Menual">
+                    <Controls:MyJoystick></Controls:MyJoystick>
+                </TabItem>
+                <TabItem Header="Auto Pilot">
+                    <Controls:MyAutoPilot></Controls:MyAutoPilot>
+                </TabItem>
+            </TabControl>
+        </Viewbox>
+        <Controls:MyFlightBoard></Controls:MyFlightBoard>
     </Grid>
 </Window>

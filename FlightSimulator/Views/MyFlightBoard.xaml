@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FlightSimulator.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -16,7 +15,8 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Button Content="Connect" HorizontalAlignment="Right"  Margin="6"></Button>
-        <Button Content="Settings" Grid.Column="1" HorizontalAlignment="Left" Margin="6"></Button>
+        <Button Content="Settings" Grid.Column="1" HorizontalAlignment="Left" Margin="6"
+                 Command="{Binding SettingsCommand}"></Button>
         <local:FlightBoard Grid.Row="1" Grid.ColumnSpan="2" ></local:FlightBoard>
     </Grid>
 </UserControl>

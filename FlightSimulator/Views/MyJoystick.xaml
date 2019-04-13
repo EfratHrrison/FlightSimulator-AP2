@@ -57,18 +57,18 @@
         </TextBlock>
 
         <TextBlock Text="0.0" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                   FontSize="20" FontWeight="Bold" Grid.Row="0" Grid.Column="2" Margin="50" >
+                   FontSize="20" FontWeight="Bold" Grid.Row="0" Grid.Column="2" Margin="45" >
             <TextBlock.LayoutTransform>
                 <RotateTransform Angle="90"/>
             </TextBlock.LayoutTransform>
         </TextBlock>
         <Slider x:Name="rudderSlider" VerticalAlignment="Bottom" HorizontalAlignment="Center" Maximum="1"
                 Minimum="-1" TickPlacement="BottomRight" TickFrequency="0.1" Grid.Row="2" Grid.Column="0" 
-                Width="370" Margin="60" Grid.ColumnSpan="3"/>
+                Width="300" Margin="60" Grid.ColumnSpan="3"/>
 
         <Slider x:Name="throttelSlider" VerticalAlignment="Center" HorizontalAlignment="Left" Maximum="1"
                 Minimum="-1" TickPlacement="BottomRight" TickFrequency="0.1" Grid.Row="0" Grid.Column="0" 
-                Height="350" Margin="90" Grid.RowSpan="3" Orientation="Vertical"/>
+                Height="300" Margin="50" Grid.RowSpan="3" Orientation="Vertical"/>
 
        
     </Grid>
