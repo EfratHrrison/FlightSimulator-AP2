@@ -16,14 +16,20 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
       
-        <Button  Name="OKButton" Content="OK"  Margin="8" HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                 FontWeight="DemiBold" Grid.Row="1" Grid.Column="0"  Height="20" Width="50" Command="{Binding ClickCommand}"/>
+        <Button  Name="OKButton" Content="OK"  Margin="8" HorizontalAlignment="Right"
+                 VerticalAlignment="Bottom" FontWeight="DemiBold" Grid.Row="1" Grid.Column="0" 
+                 Height="20" Width="50" Command="{Binding ClickOKCommand}"/>
 
-        <Button  Name="ClearButton" Content="Clear"  Margin="8" HorizontalAlignment="Left" VerticalAlignment="Bottom" 
-                 FontWeight="DemiBold" Grid.Row="1" Grid.Column="1" Height="20" Width="50" Command="{Binding ClearCommand}" />
-
-        <TextBox x:Name="AutoPilotText" Grid.RowSpan="2" Grid.ColumnSpan="2"  Height="400" 
-                 VerticalAlignment="Top" BorderBrush="Blue" 
-                 Text="{Binding Line, UpdateSourceTrigger=PropertyChanged}" Background="{Binding Color}"></TextBox>
+        <Button  Name="ClearButton" Content="Clear"  Margin="8" HorizontalAlignment="Left" 
+                 VerticalAlignment="Bottom" FontWeight="DemiBold" Grid.Row="1"
+                 Grid.Column="1" Height="20" Width="50" Command="{Binding ClearCommand}" />
+ 
+         <ScrollViewer Height="400" Grid.ColumnSpan="2">
+            <TextBox x:Name="txtAutoPilot" Grid.ColumnSpan="2" Height="400" VerticalAlignment="Top" BorderBrush="Blue" 
+             Text="{Binding Line, UpdateSourceTrigger=PropertyChanged}" Background="{Binding Color}" 
+             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+             ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
+        </ScrollViewer>
+       
     </Grid>
 </UserControl>

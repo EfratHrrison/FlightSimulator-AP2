@@ -15,6 +15,19 @@ namespace FlightSimulator.Model
     {
         TcpClient _client;
 
+        private static Info m_Instance = null;
+        public static Info Instance
+        {
+            get
+            {
+                if (m_Instance == null)
+                {
+                    m_Instance = new Info();
+                }
+                return m_Instance;
+            }
+        }
+
         public Info()
         {
             connect();
@@ -29,11 +42,8 @@ namespace FlightSimulator.Model
                 ApplicationSettingsModel.Instance.FlightInfoPort);
             TcpListener listener = new TcpListener(ep);
             listener.Start();
-            //Console.WriteLine("Waiting for client connections...");
             _client = listener.AcceptTcpClient();
             Console.WriteLine("Info channel: Client connected");
-
-
         }
 
         public static void listen(TcpClient _client)

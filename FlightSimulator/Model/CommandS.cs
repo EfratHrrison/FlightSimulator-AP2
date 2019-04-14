@@ -12,33 +12,49 @@ namespace FlightSimulator.Model
 {
     class CommandS
     {
-        TcpClient tcpClient; 
+        TcpClient tcpClient;
+        private static CommandS m_Instance = null;
+        
+        public static CommandS Instance
+        {
+            get
+            {
+                if(m_Instance == null)
+                {
+                    m_Instance = new CommandS();
+                }
+                return m_Instance;
+            }
+        }
+ 
         public CommandS()  {
-            connect();
+            //connect();
         }
 
-        public void openThread() {
-        Thread thread = new Thread(new ThreadStart(sendMessage));
+        public void openThread(string input) {
+
+         string[] split = Parse(input);
+        Thread thread = new Thread(() => sendMessage(split, tcpClient));
             thread.Start();
 
         }
 
-        public void sendMessage() {
+        public void sendMessage(string[] split, TcpClient tcpClient) {
             NetworkStream ns = tcpClient.GetStream();
-            using (NetworkStream stream = tcpClient.GetStream())
-            using (StreamReader reader = new StreamReader(stream))
-            using (StreamWriter writer = new StreamWriter(stream)) {
-            
-                while (true) {
+             {
+
+                //string[] buffer =;
+                foreach(string s in split) {
                     // Send data to server
                     Console.Write("Please enter a number: ");
-                    string num = Console.ReadLine();
-                    num += "\r\n";
-                    writer.Write(num);
-                    writer.Flush();
-                    // Get result from server
-                    string result = reader.ReadLine();
-                    Console.WriteLine("Result = {0}", result);
+
+                    string NewCommand = s;
+                    NewCommand += "\r\n";
+                    byte[] buff = Encoding.ASCII.GetBytes(NewCommand);
+                    ns.Write(buff, 0, buff.Length);
+                  
+                    //string result = reader.ReadLine();
+                    //Console.WriteLine("Result = {0}", result);
                 }
             }
         }
@@ -50,6 +66,13 @@ namespace FlightSimulator.Model
             tcpClient.Connect(ep);
             Console.WriteLine("You are connected");
            // tcpClient.Close();
+        }
+
+        private string[] Parse(string line)
+        {
+            string[] newLine = { "\r\n" };
+            string[] input = line.Split(newLine, StringSplitOptions.None);
+            return input; 
         }
     }
 }

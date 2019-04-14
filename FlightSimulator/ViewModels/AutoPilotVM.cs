@@ -11,7 +11,7 @@ namespace FlightSimulator.ViewModels
 {
     class AutoPilotVM : BaseNotify
     {
-        string[] input;
+        //string[] input;
         string line;
         public AutoPilotVM()
         {
@@ -47,22 +47,19 @@ namespace FlightSimulator.ViewModels
             }
             private set { }
         }
-        private ICommand _clickCommand;
-        public ICommand ClickCommand
+        private ICommand _OKCommand;
+        public ICommand ClickOKCommand
         {
             get
             {
-                return _clickCommand ?? (_clickCommand = new CommandHandler(() => OnClick()));
+                return _OKCommand ?? (_OKCommand = new CommandHandler(() => OnClickOK()));
             }
         }
-        private void OnClick()
+        private void OnClickOK()
         {
-            Parse(line);
 
-            foreach (string arg in input)
-            {
-                MessageBox.Show(arg);
-            }
+            //CommandS command = new CommandS();
+            CommandS.Instance.openThread(line);
         }
 
         private ICommand _clearCommand;
@@ -77,12 +74,6 @@ namespace FlightSimulator.ViewModels
         {
             line = "";
             NotifyPropertyChanged(line);
-        }
-
-        private void Parse(string line)
-        {
-            string[] newLine = { "\r\n" };
-            input = line.Split(newLine, StringSplitOptions.None);
         }
     }
 }

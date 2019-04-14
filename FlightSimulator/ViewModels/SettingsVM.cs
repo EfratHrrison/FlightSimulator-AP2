@@ -47,32 +47,8 @@ namespace FlightSimulator.ViewModels
         private void OnClickCONNECT()
         {
             Info connectRead = new Info();
-            CommandS connect = new CommandS();
+            //CommandS connect = new CommandS();
+            CommandS.Instance.connect();
         }
-
-
-        //private ICommand _OKAutoPilot;
-        //public ICommand OKAutoPilotCommand
-        //{
-        //    get
-        //    {
-        //        return _OKAutoPilot ?? (_OKAutoPilot =
-        //        new CommandHandler(() => OnClickOK()));
-        //    }
-        //    set
-        //    {
-
-        //    }
-        //}
-        //private void OnClickOK()
-        //{
-        //    MyAutoPilot OkCommand = new MyAutoPilot();
-
-        //}
-
-        //public void ReadData()
-        //{
-
-        //}
     }
 }
