@@ -30,5 +30,49 @@ namespace FlightSimulator.ViewModels
             PopUpSetting setting = new PopUpSetting();
             setting.ShowDialog();
         }
+
+        private ICommand _connectCommand;
+        public ICommand ConnectCommand
+        {
+            get
+            {
+                return _connectCommand ?? (_connectCommand =
+                new CommandHandler(() => OnClickCONNECT()));
+            }
+            set
+            {
+
+            }
+        }
+        private void OnClickCONNECT()
+        {
+            Info connectRead = new Info();
+            CommandS connect = new CommandS();
+        }
+
+
+        //private ICommand _OKAutoPilot;
+        //public ICommand OKAutoPilotCommand
+        //{
+        //    get
+        //    {
+        //        return _OKAutoPilot ?? (_OKAutoPilot =
+        //        new CommandHandler(() => OnClickOK()));
+        //    }
+        //    set
+        //    {
+
+        //    }
+        //}
+        //private void OnClickOK()
+        //{
+        //    MyAutoPilot OkCommand = new MyAutoPilot();
+
+        //}
+
+        //public void ReadData()
+        //{
+
+        //}
     }
 }
