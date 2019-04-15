@@ -22,8 +22,8 @@ namespace FlightSimulator.ViewModels
          
             set
             {
-                string text = value.ToString();
-                line = text.Substring(0, 3);
+                string line = value;
+               
 
             }
         }
