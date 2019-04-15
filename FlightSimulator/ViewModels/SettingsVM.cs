@@ -50,6 +50,7 @@ namespace FlightSimulator.ViewModels
             Info.Instance.connect();
             //CommandS connect = new CommandS();
             CommandS.Instance.connect();
+
         }
     }
 }
