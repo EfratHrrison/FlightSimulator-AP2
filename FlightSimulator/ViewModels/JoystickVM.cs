@@ -8,63 +8,38 @@ using System.Windows.Input;
 
 namespace FlightSimulator.ViewModels
 {
-    class JoystickVM : BaseNotify
+    class JoystickVM 
     {
         //string[] input;
         string line;
-        public JoystickVM()
+       
+        public float rudderCommand
         {
-            line = "";
-        }
-
-        public string Line
-        {
-         
             set
             {
-                string line = value;
-               
-
+                string rudder = "set controls/flight/rudder ";
+                rudder += " ";
+                rudder += value;
+                rudder += " ";
+                rudder += "/r/n";
+                //CommandS command = new CommandS();
+                CommandS.Instance.openThread(rudder);
             }
         }
+   
 
-        private string to_string(string value)
+        public float throttleCommand
         {
-            throw new NotImplementedException();
-        }
-
-        private ICommand _sliderRudder;
-        public ICommand rudderCommand
-        {
-            get
+            set
             {
-                return _sliderRudder ?? (_sliderRudder = new CommandHandler(() => slideRudder()));
+                string throttle = "controls/engines/current-engine/throttle ";
+                throttle += " ";
+                throttle += line;
+                throttle += " ";
+                throttle += "/r/n";
+                //CommandS command = new CommandS();
+                CommandS.Instance.openThread(throttle);
             }
-        }
-        private void slideRudder()
-        {
-            string rudder = "set controls/flight/rudder ";
-            rudder += line;
-            rudder += "/r/n";
-            //CommandS command = new CommandS();
-            CommandS.Instance.openThread(rudder);
-        }
-
-        private ICommand _sliderThrottle;
-        public ICommand throttleCommand
-        {
-            get
-            {
-                return _sliderThrottle ?? (_sliderThrottle = new CommandHandler(() => slideThrottle()));
-            }
-        }
-        private void slideThrottle()
-        {
-            string throttle = "controls/engines/current-engine/throttle ";
-            throttle += line;
-            throttle += "/r/n";
-            //CommandS command = new CommandS();
-            CommandS.Instance.openThread(throttle);
         }
     }
 }

@@ -44,11 +44,11 @@
                    FontSize="16" FontWeight="Bold" Grid.Row="0" Grid.Column="1" Margin="20" >
         </TextBlock>
 
-        <TextBlock Text="{Binding ElementName=throttelSlider, Path=Value}" VerticalAlignment="Bottom" 
+        <TextBlock Text="{Binding ElementName=throttelSlider, Path=Value, StringFormat=0.00}" VerticalAlignment="Bottom" 
                    HorizontalAlignment="Right"
                    Margin="70" FontSize="12" FontWeight="DemiBold"/>
 
-        <TextBlock Text="{Binding ElementName=rudderSlider, Path=Value}" VerticalAlignment="Top" 
+        <TextBlock Text="{Binding ElementName=rudderSlider, Path=Value, StringFormat=0.00}" VerticalAlignment="Top" 
                    HorizontalAlignment="Left"
                    Margin="80" FontSize="12" Grid.Row="2" Grid.Column="2" FontWeight="DemiBold"/>
 
@@ -64,11 +64,11 @@
         </TextBlock>
         <Slider x:Name="rudderSlider" VerticalAlignment="Bottom" HorizontalAlignment="Center" Maximum="1"
                 Minimum="-1" TickPlacement="BottomRight" TickFrequency="0.1" Grid.Row="2" Grid.Column="0" 
-                Width="300" Margin="60" Grid.ColumnSpan="3"  Value="{Binding rudderCommand, Mode=OneWay}"/>
+                Width="300" Margin="60" Grid.ColumnSpan="3"  Value="{Binding rudderCommand}"/>
 
         <Slider x:Name="throttelSlider" VerticalAlignment="Center" HorizontalAlignment="Left" Maximum="1"
                 Minimum="-1" TickPlacement="BottomRight" TickFrequency="0.1" Grid.Row="0" Grid.Column="0" 
-                Height="300" Margin="50" Grid.RowSpan="3" Orientation="Vertical" Value="{Binding throttleCommand,Mode=OneWay}"/>
+                Height="300" Margin="50" Grid.RowSpan="3" Orientation="Vertical" Value="{Binding throttleCommand}"/>
 
        
     </Grid>

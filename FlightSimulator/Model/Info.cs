@@ -30,10 +30,6 @@ namespace FlightSimulator.Model
 
         public Info()
         {
-            connect();
-            Thread thread = new Thread(() => listen(_client));
-            thread.Start();
-
         }
         public void connect()
         {
@@ -44,6 +40,8 @@ namespace FlightSimulator.Model
             listener.Start();
             _client = listener.AcceptTcpClient();
             Console.WriteLine("Info channel: Client connected");
+            Thread thread = new Thread(() => listen(_client));
+            thread.Start();
         }
 
         public static void listen(TcpClient _client)
