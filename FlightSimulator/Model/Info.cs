@@ -14,6 +14,8 @@ namespace FlightSimulator.Model
     class Info
     {
         TcpClient _client;
+        float lon;
+        float lat;
 
         private static Info m_Instance = null;
         public static Info Instance
@@ -44,11 +46,11 @@ namespace FlightSimulator.Model
             thread.Start();
         }
 
-        public static void listen(TcpClient _client)
+        public void listen(TcpClient _client)
         {
             Byte[] bytes;
             string[] splitMsg = new string[23];
-            string lon, lat;
+            
             NetworkStream ns = _client.GetStream();
 
             while (true)
@@ -59,8 +61,8 @@ namespace FlightSimulator.Model
                     ns.Read(bytes, 0, _client.ReceiveBufferSize);
                     string msg = Encoding.ASCII.GetString(bytes); //the message incoming
                     splitMsg = msg.Split(',');
-                    lon = splitMsg[0];
-                    lat = splitMsg[1];
+                    lon = float.Parse(splitMsg[0]);
+                    lat = float.Parse(splitMsg[1]);
                     Console.WriteLine(msg);
 
                 }
