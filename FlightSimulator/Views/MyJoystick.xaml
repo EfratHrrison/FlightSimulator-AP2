@@ -19,7 +19,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <local:Joystick Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="3"></local:Joystick>
+        
         
 
         <TextBlock x:Name="throttle" Text="←throttle→" VerticalAlignment="Center" HorizontalAlignment="Left" 
@@ -52,11 +52,11 @@
                    HorizontalAlignment="Left"
                    Margin="80" FontSize="12" Grid.Row="2" Grid.Column="2" FontWeight="DemiBold"/>
 
-        <TextBlock Text="0.0" VerticalAlignment="Center" HorizontalAlignment="Left" 
+        <TextBlock Text="{Binding ElementName=joystickVal, Path=Aileron , StringFormat=0.00}" VerticalAlignment="Center" HorizontalAlignment="Left" 
                    FontSize="20" FontWeight="Bold" Grid.Row="0" Grid.Column="2" Margin="80" >
         </TextBlock>
 
-        <TextBlock Text="0.0" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
+        <TextBlock  Text="{Binding ElementName=joystickVal , Path=Elevator, StringFormat=0.00}" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
                    FontSize="20" FontWeight="Bold" Grid.Row="0" Grid.Column="2" Margin="45" >
             <TextBlock.LayoutTransform>
                 <RotateTransform Angle="90"/>
@@ -70,7 +70,10 @@
                 Minimum="-1" TickPlacement="BottomRight" TickFrequency="0.1" Grid.Row="0" Grid.Column="0" 
                 Height="300" Margin="50" Grid.RowSpan="3" Orientation="Vertical" Value="{Binding throttleCommand}"/>
 
-       
+        <local:Joystick x:Name="joystickVal" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="3"
+                        Aileron="{Binding aileronCommand, Mode=OneWayToSource}"
+                        Elevator="{Binding elevatorCommand, Mode=OneWayToSource}"></local:Joystick>
+
     </Grid>
  
 </UserControl>

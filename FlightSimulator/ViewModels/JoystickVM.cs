@@ -32,13 +32,42 @@ namespace FlightSimulator.ViewModels
         {
             set
             {
-                string throttle = "controls/engines/current-engine/throttle ";
+                string throttle = "set controls/engines/current-engine/throttle ";
                 throttle += " ";
-                throttle += line;
+                throttle += value;
                 throttle += " ";
                 throttle += "/r/n";
                 //CommandS command = new CommandS();
                 CommandS.Instance.openThread(throttle);
+            }
+        }
+        public float aileronCommand
+        {
+            set
+            {
+                //todo
+                string aileron = "set /controls/flight/aileron ";
+                aileron += " ";
+                aileron += value;
+                aileron += " ";
+                aileron += "/r/n";
+                //CommandS command = new CommandS();
+                CommandS.Instance.openThread(aileron);
+            }
+        }
+
+        public float elevatorCommand
+        {
+            set
+            {
+                //todo
+                string elevator = "set /controls/flight/elevator ";
+                elevator += " ";
+                elevator += value;
+                elevator += " ";
+                elevator += "/r/n";
+                //CommandS command = new CommandS();
+                CommandS.Instance.openThread(elevator);
             }
         }
     }
