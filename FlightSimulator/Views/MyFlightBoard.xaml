@@ -14,10 +14,12 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Button Content="Connect" HorizontalAlignment="Right"  Margin="6"
-                Command="{Binding ConnectCommand}"></Button>
-        <Button Content="Settings" Grid.Column="1" HorizontalAlignment="Left" Margin="6"
+        <Button Content="Connect" HorizontalAlignment="Center"  Margin="6"
+                Command="{Binding ConnectCommand}" Grid.ColumnSpan="2"></Button>
+        <Button Content="Settings" Grid.Column="1" HorizontalAlignment="Center" Margin="6"
                  Command="{Binding SettingsCommand}"></Button>
+        <Button Content="DisConnect" Grid.Column="0" HorizontalAlignment="Center" Margin="6"
+                 Command="{Binding DisConnectCommand}"></Button>
         <local:FlightBoard Grid.Row="1" Grid.ColumnSpan="2" ></local:FlightBoard>
     </Grid>
 </UserControl>

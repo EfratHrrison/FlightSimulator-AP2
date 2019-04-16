@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlightSimulator.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace FlightSimulator.Views
         public PopUpSetting()
         {
             InitializeComponent();
+            this.DataContext = new ApplicationSettingsModel();
         }
     }
 }

@@ -14,8 +14,9 @@ namespace FlightSimulator.Model
     {
         bool isConnnect = false;
         TcpClient tcpClient;
+        Thread threadCommand;
         private static CommandS m_Instance = null;
-        
+
         public static CommandS Instance
         {
             get
@@ -35,9 +36,15 @@ namespace FlightSimulator.Model
         public void openThread(string input) {
 
          string[] split = Parse(input);
-        Thread thread = new Thread(() => sendMessage(split, tcpClient));
-            thread.Start();
+        threadCommand = new Thread(() => sendMessage(split, tcpClient));
+            threadCommand.Start();
 
+        }
+
+        public void closeThread()
+        {
+            isConnnect = false;
+            tcpClient.Close();
         }
 
         public void sendMessage(string[] split, TcpClient tcpClient) {
@@ -56,10 +63,9 @@ namespace FlightSimulator.Model
                     NewCommand += "\r\n";
                     byte[] buff = Encoding.ASCII.GetBytes(NewCommand);
                     ns.Write(buff, 0, buff.Length);
-                  
-                    //string result = reader.ReadLine();
-                    //Console.WriteLine("Result = {0}", result);
+                    Thread.Sleep(2000);
                 }
+                
             }
         }
 
@@ -79,6 +85,11 @@ namespace FlightSimulator.Model
             string[] newLine = { "\r\n" };
             string[] input = line.Split(newLine, StringSplitOptions.None);
             return input; 
+        }
+
+        public bool getIsConnected()
+        {
+            return isConnnect;
         }
     }
 }

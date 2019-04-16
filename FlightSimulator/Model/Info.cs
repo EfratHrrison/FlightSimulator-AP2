@@ -6,16 +6,45 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Net;
+using FlightSimulator.ViewModels;
 
 
 
 namespace FlightSimulator.Model
 {
-    class Info
+    class Info : BaseNotify
     {
         TcpClient _client;
-        float lon;
-        float lat;
+        double lon;
+        double lat;
+        Thread threadInfo;
+        //FlightBoardViewModel vm = new FlightBoardViewModel();
+
+        public double Lon
+        {
+            set
+            {
+                lon = value;
+                NotifyPropertyChanged("Lon");
+            }
+            get { return lon; }
+        }
+
+        public double Lat
+        {
+            set
+            {
+                lat = value;
+                NotifyPropertyChanged("Lat");
+            }
+            get { return lat; }
+        }
+
+        public bool shouldContinue
+        {
+            set;
+            get;
+        }
 
         private static Info m_Instance = null;
         public static Info Instance
@@ -32,7 +61,11 @@ namespace FlightSimulator.Model
 
         public Info()
         {
+            //lon = 0.0f;
+            //lat = 0.0f;
+            shouldContinue = true;
         }
+
         public void connect()
         {
 
@@ -42,18 +75,24 @@ namespace FlightSimulator.Model
             listener.Start();
             _client = listener.AcceptTcpClient();
             Console.WriteLine("Info channel: Client connected");
-            Thread thread = new Thread(() => listen(_client));
-            thread.Start();
+            threadInfo = new Thread(() => listen(_client));
+            threadInfo.Start();
+        }
+
+        public void closeThread()
+        {
+            _client.Close();
+            shouldContinue = false;
         }
 
         public void listen(TcpClient _client)
         {
             Byte[] bytes;
-            string[] splitMsg = new string[23];
+            string[] splitMsg = new string[25];
             
             NetworkStream ns = _client.GetStream();
 
-            while (true)
+            while (shouldContinue)
             {
                 if (_client.ReceiveBufferSize > 0)
                 {
@@ -61,12 +100,16 @@ namespace FlightSimulator.Model
                     ns.Read(bytes, 0, _client.ReceiveBufferSize);
                     string msg = Encoding.ASCII.GetString(bytes); //the message incoming
                     splitMsg = msg.Split(',');
-                    lon = float.Parse(splitMsg[0]);
-                    lat = float.Parse(splitMsg[1]);
-                    Console.WriteLine(msg);
+                    Lon = float.Parse(splitMsg[0]);
+                    Lat = float.Parse(splitMsg[1]);
+                    //Console.WriteLine(msg);
 
                 }
             }
+            ns.Close();
+            _client.Close();
         }
+
+
     }
 }
