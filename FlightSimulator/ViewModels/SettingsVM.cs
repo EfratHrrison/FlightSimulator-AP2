@@ -48,7 +48,9 @@ namespace FlightSimulator.ViewModels
         }
         private void OnClickDisConnect()
         {
-           /////////////
+            Info.Instance.shouldContinue = false;
+
+            CommandS.Instance.disconnect();
         }
 
         private ICommand _connectCommand;
@@ -71,7 +73,7 @@ namespace FlightSimulator.ViewModels
             {
                 new Thread(() =>
                 {
-                    CommandS.Instance.closeThread();
+                    CommandS.Instance.disconnect();
                     CommandS.Instance.connect();
                 }).Start();
 

@@ -79,7 +79,7 @@ namespace FlightSimulator.Model
             threadInfo.Start();
         }
 
-        public void closeThread()
+        public void disconnect()
         {
             _client.Close();
             shouldContinue = false;

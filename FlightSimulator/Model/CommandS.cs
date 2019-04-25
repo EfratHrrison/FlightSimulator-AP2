@@ -29,9 +29,7 @@ namespace FlightSimulator.Model
             }
         }
  
-        public CommandS()  {
-            //connect();
-        }
+        public CommandS()  {}
 
         public void openThread(string input) {
 
@@ -41,10 +39,15 @@ namespace FlightSimulator.Model
 
         }
 
-        public void closeThread()
+        public void disconnect()
         {
             isConnnect = false;
             tcpClient.Close();
+        }
+
+        public void closeThread()
+        {
+            threadCommand.Abort();
         }
 
         public void sendMessage(string[] split, TcpClient tcpClient) {
