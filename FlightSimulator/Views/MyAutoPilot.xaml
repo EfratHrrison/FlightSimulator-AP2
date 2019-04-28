@@ -21,8 +21,8 @@
                  Height="20" Width="50" Command="{Binding ClickOKCommand}">
             <Button.Background>
                 <LinearGradientBrush>
-                    <GradientStop Color="Lavender" Offset="0" />
-                    <GradientStop Color="White" Offset="1" />
+                    <GradientStop Color="Pink" Offset="1" />
+                    <GradientStop Color="White" Offset="0" />
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
@@ -32,8 +32,8 @@
                  Grid.Column="1" Height="20" Width="50" Command="{Binding ClearCommand}">
             <Button.Background>
                 <LinearGradientBrush>
-                    <GradientStop Color="Lavender" Offset="0" />
-                    <GradientStop Color="White" Offset="1" />
+                    <GradientStop Color="Pink" Offset="1" />
+                    <GradientStop Color="White" Offset="0" />
                 </LinearGradientBrush>
             </Button.Background>
         </Button>

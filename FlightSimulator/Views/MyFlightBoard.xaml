@@ -19,8 +19,8 @@
                 >
             <Button.Background>
                 <LinearGradientBrush>
-                    <GradientStop Color="Lavender" Offset="0" />
-                    <GradientStop Color="White" Offset="1" />
+                    <GradientStop Color="Pink" Offset="1" />
+                    <GradientStop Color="White" Offset="0" />
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
@@ -28,8 +28,8 @@
                  Command="{Binding SettingsCommand}">
             <Button.Background>
                 <LinearGradientBrush>
-                    <GradientStop Color="Lavender" Offset="0" />
-                    <GradientStop Color="White" Offset="1" />
+                    <GradientStop Color="Pink" Offset="1" />
+                    <GradientStop Color="White" Offset="0" />
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
@@ -37,8 +37,8 @@
                  Command="{Binding DisConnectCommand}">
             <Button.Background>
                 <LinearGradientBrush>
-                    <GradientStop Color="Lavender" Offset="0" />
-                    <GradientStop Color="White" Offset="1" />
+                    <GradientStop Color="Pink" Offset="1" />
+                    <GradientStop Color="White" Offset="0" />
                 </LinearGradientBrush>
             </Button.Background>
         </Button>

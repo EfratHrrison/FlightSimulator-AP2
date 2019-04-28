@@ -61,14 +61,11 @@ namespace FlightSimulator.Model
 
         public Info()
         {
-            //lon = 0.0f;
-            //lat = 0.0f;
             shouldContinue = true;
         }
 
         public void connect()
         {
-
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse(ApplicationSettingsModel.Instance.FlightServerIP),
                 ApplicationSettingsModel.Instance.FlightInfoPort);
             TcpListener listener = new TcpListener(ep);

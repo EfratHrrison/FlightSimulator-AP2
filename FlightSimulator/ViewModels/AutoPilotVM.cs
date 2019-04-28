@@ -36,13 +36,14 @@ namespace FlightSimulator.ViewModels
         {
             get
             {
-                if (line == "")
+                //change the background of the auto pilot text box
+                if (line != "")
                 {
-                    return "White";
+                    return "Pink";
                 }
                 else
                 {
-                    return "Pink";
+                    return "White";
                 }
             }
             private set { }
@@ -58,7 +59,6 @@ namespace FlightSimulator.ViewModels
         private void OnClickOK()
         {
 
-            //CommandS command = new CommandS();
             CommandS.Instance.openThread(line);
         }
 

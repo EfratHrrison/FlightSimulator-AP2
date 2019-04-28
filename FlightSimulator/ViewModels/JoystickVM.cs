@@ -11,7 +11,7 @@ namespace FlightSimulator.ViewModels
     class JoystickVM 
     {
         //string[] input;
-        string line;
+        //string line;
        
         public float rudderCommand
         {

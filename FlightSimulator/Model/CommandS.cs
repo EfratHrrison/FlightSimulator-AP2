@@ -59,9 +59,7 @@ namespace FlightSimulator.Model
 
                 //string[] buffer =;
                 foreach(string s in split) {
-                    // Send data to server
-                    Console.Write("Please enter a number: ");
-
+                  
                     string NewCommand = s;
                     NewCommand += "\r\n";
                     byte[] buff = Encoding.ASCII.GetBytes(NewCommand);
@@ -80,7 +78,6 @@ namespace FlightSimulator.Model
             tcpClient.Connect(ep);
             isConnnect = true;
             Console.WriteLine("You are connected");
-           // tcpClient.Close();
         }
 
         private string[] Parse(string line)
