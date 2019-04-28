@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.IO;
 
+/********************
+ * class CommandS.
+ * this class is responsible for the server side.
+ * he will send command to the simulator and will make him fly in the sky. 
+ *******************/
 namespace FlightSimulator.Model
 {
     class CommandS
@@ -21,7 +26,7 @@ namespace FlightSimulator.Model
         {
             get
             {
-                if(m_Instance == null)
+                if(null == m_Instance)
                 {
                     m_Instance = new CommandS();
                 }
@@ -31,6 +36,7 @@ namespace FlightSimulator.Model
  
         public CommandS()  {}
 
+        //this function opens the thread
         public void openThread(string input) {
 
          string[] split = Parse(input);
@@ -45,11 +51,7 @@ namespace FlightSimulator.Model
             tcpClient.Close();
         }
 
-        public void closeThread()
-        {
-            threadCommand.Abort();
-        }
-
+        //parser the string and send the command to the simulator 
         public void sendMessage(string[] split, TcpClient tcpClient) {
             if (!isConnnect){
                 return;
@@ -57,11 +59,10 @@ namespace FlightSimulator.Model
             NetworkStream ns = tcpClient.GetStream();
              {
 
-                //string[] buffer =;
+               
                 foreach(string s in split) {
-                  
                     string NewCommand = s;
-                    NewCommand += "\r\n";
+                    NewCommand = NewCommand + "\r\n";
                     byte[] buff = Encoding.ASCII.GetBytes(NewCommand);
                     ns.Write(buff, 0, buff.Length);
                     Thread.Sleep(2000);
@@ -70,6 +71,7 @@ namespace FlightSimulator.Model
             }
         }
 
+        //connect to the simulator as server side 
         public void connect() {
          
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse(ApplicationSettingsModel.Instance.FlightServerIP),

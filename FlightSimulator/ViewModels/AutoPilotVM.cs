@@ -11,7 +11,6 @@ namespace FlightSimulator.ViewModels
 {
     class AutoPilotVM : BaseNotify
     {
-        //string[] input;
         string line;
         public AutoPilotVM()
         {

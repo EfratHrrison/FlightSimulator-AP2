@@ -26,6 +26,7 @@ namespace FlightSimulator.ViewModels
 
             }
         }
+        //when the button of setting is prased pop up the setting window
         private void OnClick()
         {
             PopUpSetting setting = new PopUpSetting();
@@ -46,6 +47,7 @@ namespace FlightSimulator.ViewModels
 
             }
         }
+        //disconnect the simulator
         private void OnClickDisConnect()
         {
             Info.Instance.shouldContinue = false;
@@ -66,9 +68,11 @@ namespace FlightSimulator.ViewModels
 
             }
         }
-
+        //when we prase the connect button connect to simulator
+        //as a server and client
         private void OnClickCONNECT()
         {
+            //when we connected for the second time 
             if (CommandS.Instance.getIsConnected())
             {
                 new Thread(() =>
@@ -78,6 +82,7 @@ namespace FlightSimulator.ViewModels
                 }).Start();
 
             }
+            //connect fotr the first time
             else
             {
                 new Thread(() =>

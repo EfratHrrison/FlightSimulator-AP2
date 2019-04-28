@@ -9,7 +9,11 @@ using System.Net;
 using FlightSimulator.ViewModels;
 
 
-
+/********************
+ * class Info.
+ * this class is responsible for the client side.
+ * he will get the lon and let from the simulator and drew the map by them. 
+ *******************/
 namespace FlightSimulator.Model
 {
     class Info : BaseNotify
@@ -18,7 +22,6 @@ namespace FlightSimulator.Model
         double lon;
         double lat;
         Thread threadInfo;
-        //FlightBoardViewModel vm = new FlightBoardViewModel();
 
         public double Lon
         {
@@ -27,7 +30,9 @@ namespace FlightSimulator.Model
                 lon = value;
                 NotifyPropertyChanged("Lon");
             }
-            get { return lon; }
+            get { 
+            return lon;
+            }
         }
 
         public double Lat
@@ -37,7 +42,9 @@ namespace FlightSimulator.Model
                 lat = value;
                 NotifyPropertyChanged("Lat");
             }
-            get { return lat; }
+            get { 
+               return lat; 
+            }
         }
 
         public bool shouldContinue
@@ -51,7 +58,7 @@ namespace FlightSimulator.Model
         {
             get
             {
-                if (m_Instance == null)
+                if (null == m_Instance)
                 {
                     m_Instance = new Info();
                 }
@@ -64,6 +71,7 @@ namespace FlightSimulator.Model
             shouldContinue = true;
         }
 
+        //connect to the simulator as a client 
         public void connect()
         {
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse(ApplicationSettingsModel.Instance.FlightServerIP),
@@ -71,11 +79,12 @@ namespace FlightSimulator.Model
             TcpListener listener = new TcpListener(ep);
             listener.Start();
             _client = listener.AcceptTcpClient();
-            Console.WriteLine("Info channel: Client connected");
+            
             threadInfo = new Thread(() => listen(_client));
             threadInfo.Start();
         }
 
+        //disconnect the simulator 
         public void disconnect()
         {
             _client.Close();
@@ -89,20 +98,20 @@ namespace FlightSimulator.Model
             
             NetworkStream ns = _client.GetStream();
 
+            //get the values - lon and let from the simulator 
             while (shouldContinue)
             {
                 if (_client.ReceiveBufferSize > 0)
                 {
                     bytes = new byte[_client.ReceiveBufferSize];
                     ns.Read(bytes, 0, _client.ReceiveBufferSize);
-                    string msg = Encoding.ASCII.GetString(bytes); //the message incoming
+                    string msg = Encoding.ASCII.GetString(bytes); 
                     splitMsg = msg.Split(',');
                     Lon = float.Parse(splitMsg[0]);
                     Lat = float.Parse(splitMsg[1]);
-                    //Console.WriteLine(msg);
-
                 }
             }
+            //close the socket 
             ns.Close();
             _client.Close();
         }
